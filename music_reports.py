@@ -138,6 +138,33 @@ def display_albums(list_albums):# display all albums
     for disc in list_albums:
         print(list_to_string(disc, length))
 
+
+def given_genres(list_albums):
+    genres = set()
+    for disc in list_albums:
+        genres.add(disc[3])
+    list_apperance = []
+     
+    for disc in list_albums:
+        list_apperance.append(disc[3])
+    
+    index = 0
+    
+    apperance = [0] * len(genres)
+    index = 0
+    for genre in genres:
+        apperance[index] = list_apperance.count(genre)
+        index += 1
+   
+    index = 0
+    genres = list((genres))
+    while index < len(genres):
+        print(genres[index] + " - " + str(apperance[index]))
+        index += 1
+
+
+given_genres(list_albums)
+
 # additional functions
 
 def suggesting(): #suggests similar albums/artists
@@ -165,4 +192,4 @@ list_range = [0, 1980]
 
 # oldest_youngest(list_albums, True)
 
-display_albums(list_albums)
+# display_albums(list_albums)
