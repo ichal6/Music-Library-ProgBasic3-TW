@@ -12,22 +12,33 @@ def import_file(list_albums, filename = "text_albums_data.txt"): #imports file
         print("File '" + filename + "' not found!")
     return list_albums
 
+
 list_albums = []
 import_file(list_albums)
-def length_of_albums(list_albums, genre):
-    length = [0,0,0,0,0]
+
+
+def length_of_albums(list_albums, kind):
+    length = [0, 0, 0, 0, 0]
     col = 0
     while col < 5:
         for album in list_albums:
             if len(album[col]) > length[col]:
-                if album[3] == genre: 
+                if album[0] == kind:
                     length[col] = len(album[col])
-                elif "empty" == genre:
+                elif album[1] == kind:
                     length[col] = len(album[col])
-                    
-        col+=1
+                elif album[2] == kind:
+                    length[col] = len(album[col])
+                elif album[3] == kind:
+                    length[col] = len(album[col])
+                elif album[4] == kind:
+                    length[col] = len(album[col])
+                elif "empty" == kind:
+                    length[col] = len(album[col])        
+        col += 1
     return length
     
+
 def find_albums_genre(list_albums, genre): #finds albums by genre and print them accordint to length of genre 
     length = length_of_albums(list_albums, genre)
     print(length)
@@ -87,11 +98,22 @@ def shortest_longest(list_albums, is_long):
         print("The shortest album is: " + str(list_albums[0][1]) + " " +str(list_albums[0][4]))
 
 
-shortest_longest(list_albums, False)
-def by_artist(list_albums):
-    pass
-def by_album_name(list_albums):
-    pass
+# shortest_longest(list_albums, False)
+
+def by_artist(list_albums, name_artist):
+    length = length_of_albums(list_albums, name_artist)
+    print(length)
+    for disc in list_albums:
+        if disc[0] == name_artist:
+            print(list_to_string(disc, length))
+
+
+def by_album_name(list_albums, name_album):
+    length = length_of_albums(list_albums, name_album)
+    print(length)
+    for disc in list_albums:
+        if disc[1] == name_album:
+            print(list_to_string(disc, length))
 def oldest_youngest(list_albums):
     pass
 def play_albums(list_albums):
@@ -111,6 +133,13 @@ def editing_albums():
 def save_to_file():
     pass
 
-list_range = [0,1980]
+
+list_range = [0, 1980]
 
 #find_time_range(list_albums, list_range)
+
+print(list_albums)
+
+# by_artist(list_albums, "Pink Floyd")
+
+by_album_name(list_albums, "The Dark Side Of The Moon")

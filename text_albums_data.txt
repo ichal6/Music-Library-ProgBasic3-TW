@@ -9,3 +9,8 @@ Monika Brodka,Granada,2010,pop,37:42
 David Bowie,Low,1977,rock,38:26
 rock,rock,966,pop,13:37
 Massive Attack,Blue Lines,1991,hip hop,45:02
+Pink Floyd,The Dark Side,1973,progressive rock,43:00
+Pink Floyd,Of The Moon,1973,progressive rock,43:00
+Pink,The Dark Side Of The Moon,1973,progressive rock,43:00
+Pink Floyd,The Dark Side Of The Moon,1973,progressive rock,34:00
+Pink Floyd,The Dark Side Of The Moon,1973,rock,43:00
