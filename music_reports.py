@@ -1,7 +1,7 @@
 import datetime
 
 
-def import_file(list_albums, filename = "text_albums_data.txt"): #imports file 
+def import_file(list_albums, filename="text_albums_data.txt"): #imports file 
     try:
         with open(filename, "r") as fileopen:
             for line in fileopen:
@@ -13,8 +13,17 @@ def import_file(list_albums, filename = "text_albums_data.txt"): #imports file
     return list_albums
 
 
-list_albums = []
-import_file(list_albums)
+def list_to_string(list_item, length): #prints strings instead of list
+    element_albums = 0
+    str_item = ""
+    format_str = ""
+    while element_albums < 5:
+
+        format_str += ("{:>" + str(length[element_albums]) + "} ")
+        element_albums += 1
+    str_item = format_str.format(list_item[0], list_item[1], list_item[2], list_item[3],list_item[4])
+    
+    return str_item
 
 
 def length_of_albums(list_albums, kind):
@@ -37,6 +46,16 @@ def length_of_albums(list_albums, kind):
                     length[col] = len(album[col])        
         col += 1
     return length
+
+
+def display_albums(list_albums):# display all albums
+    length = length_of_albums(list_albums, "empty")
+    for disc in list_albums:
+        
+        print(list_to_string(disc, length))
+    
+
+
     
 
 def find_albums_genre(list_albums, genre): #finds albums by genre and print them accordint to length of genre 
@@ -55,17 +74,7 @@ def count_albums_genre(list_albums, genre): #count albums by genre
     return amount
 
 
-def list_to_string(list_item, length): #prints strings instead of list
-    element_albums = 0
-    str_item = ""
-    format_str = ""
-    while element_albums < 5:
 
-        format_str += ("{:>" + str(length[element_albums]) + "} ")
-        element_albums += 1
-    str_item = format_str.format(list_item[0], list_item[1], list_item[2], list_item[3],list_item[4])
-    
-    return str_item
 
 # find_albums_genre(list_albums, "progressive rock")
 
@@ -132,13 +141,6 @@ def oldest_youngest(list_albums, is_young):# show album oldest/youngest
         print("The oldest album is: " + str(list_albums[0][1]) + " " + str(list_albums[0][2]))
 
 
-def display_albums(list_albums):# display all albums
-    length = length_of_albums(list_albums, "empty")
-    print(length)
-    for disc in list_albums:
-        print(list_to_string(disc, length))
-
-
 def given_genres(list_albums):
     genres = set()
     for disc in list_albums:
@@ -161,9 +163,6 @@ def given_genres(list_albums):
     while index < len(genres):
         print(genres[index] + " - " + str(apperance[index]))
         index += 1
-
-
-given_genres(list_albums)
 
 # additional functions
 
