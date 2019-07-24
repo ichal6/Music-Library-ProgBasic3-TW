@@ -5,6 +5,7 @@ from music_reports import display_albums
 from music_reports import find_albums_genre
 from music_reports import find_time_range
 from music_reports import by_album_name
+from music_reports import by_artist
 
 is_open = False
 is_open_file = False
@@ -63,7 +64,8 @@ def navigating(answer):
     elif answer == 5:
         pass
     elif answer == 6:
-        pass
+        artist = input("Please enter name of artist: ")
+        by_artist(list_albums, artist)
     elif answer == 7:
         name_album = input("Please enter name of album: ")
         by_album_name(list_albums, name_album)

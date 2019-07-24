@@ -119,10 +119,13 @@ def shortest_longest(list_albums, is_long):
 
 def by_artist(list_albums, name_artist):  # show album by particular artist
     length = length_of_albums(list_albums, name_artist)
-    print(length)
+    is_not_in_album = True
     for disc in list_albums:
         if disc[0] == name_artist:
             print(list_to_string(disc, length))
+            is_not_in_album = False
+    if is_not_in_album:
+        print("No found album")
 
 
 def by_album_name(list_albums, name_album):  # show album by album name
