@@ -2,6 +2,7 @@ import datetime
 
 
 def import_file(list_albums, filename="text_albums_data.txt"):  # imports file
+    
     try:
         with open(filename, "r") as fileopen:
             for line in fileopen:
@@ -97,15 +98,17 @@ def shortest_longest(list_albums, is_long):
         index_album += 1
     list_albums.sort(key=take_time)
     index_album = 0
-    for album in list_albums:
+    '''for album in list_albums:
         # temp = datetime.timedelta(seconds=list_albums[index_album][4])
         # print(temp.seconds)
         list_albums[index_album][4] = str(datetime.timedelta(seconds=list_albums[index_album][4]))
-        index_album += 1
+        index_album += 1'''
     if is_long:
         print("The longest album is: " + str(list_albums[-1][1]) + " " + str(list_albums[-1][4]))
     else:
         print("The shortest album is: " + str(list_albums[0][1]) + " " + str(list_albums[0][4]))
+    list_albums.clear()
+    import_file(list_albums)
 
 
 # shortest_longest(list_albums, True)
