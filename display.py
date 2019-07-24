@@ -11,6 +11,9 @@ from music_reports import by_artist
 from music_reports import shortest_longest
 from music_reports import oldest_youngest
 from music_reports import given_genres
+from music_reports import editing_albums
+from music_reports import save_to_file
+from music_reports import suggesting
 
 
 is_open = False
@@ -98,7 +101,7 @@ def navigating(answer):
         elif user_choice == 6:
             given_genres(list_albums)
     elif answer == 9:  # view all similar music genres albums
-        pass
+        suggesting(list_albums)
     elif answer == 10:  # add new album
         artist_new_album = input("Please write artist of new album: ")
         name_new_album = input("Please write name of new album: ")
@@ -106,8 +109,14 @@ def navigating(answer):
         genre_new_album = input("Please input genre of new album: ")
         length_new_album = input("Please insert length of new album: ")
         new_album = "\n{},{},{},{},{}".format(artist_new_album, name_new_album, year_new_album, genre_new_album, length_new_album)
-        
         add_new_album(new_album)
+    elif answer == 11:  # pamiętać o formacie duration!
+        editing_albums(list_albums)
+        print(list_albums)
+        albums = ""
+        for disc in list_albums:
+            albums += "{},{},{},{},{}\n".format(disc[0], disc[1], disc[2], disc[3], disc[4])
+        save_to_file(albums) 
 
     elif answer == 0:
         print("Goodbye!")
