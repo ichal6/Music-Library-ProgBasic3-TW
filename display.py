@@ -1,4 +1,5 @@
 import time
+import os
 from menu import menu_map
 from menu import menu_statistics
 from music_reports import import_file
@@ -110,7 +111,7 @@ def navigating(answer):
         length_new_album = input("Please insert length of new album: ")
         new_album = "\n{},{},{},{},{}".format(artist_new_album, name_new_album, year_new_album, genre_new_album, length_new_album)
         add_new_album(new_album)
-    elif answer == 11:  # pamiętać o formacie duration!
+    elif answer == 11: 
         editing_albums(list_albums)
         print(list_albums)
         albums = ""
@@ -126,6 +127,7 @@ def navigating(answer):
         time.sleep(2)
         display_menu()
     input("Press enter by go to menu.")
+    os.system("clear")
     return True
 
 

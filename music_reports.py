@@ -199,8 +199,9 @@ def suggesting(list_albums):
 
 def editing_albums(list_albums):
     display_albums(list_albums)
+    length = len(list_albums)
     row = input("Please choose the album: ")
-    while not row.isdigit():
+    while not row.isdigit() or int(row) > length:
         print("Please input a number of album")
         row = input("Please choose the album: ")
     row = int(row)
@@ -223,7 +224,14 @@ def editing_albums(list_albums):
             genre = input("Please insert genre of album: ")
             list_albums[row][3] = genre
         elif user_input == 5:
-            duration = input("Please insert duration of album: ")
+            minutes_duration = input("Please insert minutes duration of album: ")
+            while not minutes_duration.isdigit():
+                minutes_duration = input("Please insert minutes duration of album: ")
+            seconds_duration = input("Please insert seconds duration of album: ")
+            while not seconds_duration.isdigit():
+                seconds_duration = input("Please insert seconds duration of album: ")
+
+            duration = minutes_duration + ":" + seconds_duration
             list_albums[row][4] = duration
         elif user_input == 0:
             is_editinng = False
