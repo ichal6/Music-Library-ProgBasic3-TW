@@ -2,6 +2,7 @@ import time
 from menu import menu_map
 from menu import menu_statistics
 from music_reports import import_file
+from music_reports import add_new_album
 from music_reports import display_albums
 from music_reports import find_albums_genre
 from music_reports import find_time_range
@@ -10,6 +11,7 @@ from music_reports import by_artist
 from music_reports import shortest_longest
 from music_reports import oldest_youngest
 from music_reports import given_genres
+
 
 is_open = False
 is_open_file = False
@@ -95,6 +97,17 @@ def navigating(answer):
             display_albums(list_albums)
         elif user_choice == 6:
             given_genres(list_albums)
+    elif answer == 9:  # view all similar music genres albums
+        pass
+    elif answer == 10:  # add new album
+        artist_new_album = input("Please write artist of new album: ")
+        name_new_album = input("Please write name of new album: ")
+        year_new_album = input("Please input the year of publishment: ")
+        genre_new_album = input("Please input genre of new album: ")
+        length_new_album = input("Please insert length of new album: ")
+        new_album = "\n{},{},{},{},{}".format(artist_new_album, name_new_album, year_new_album, genre_new_album, length_new_album)
+        
+        add_new_album(new_album)
 
     elif answer == 0:
         print("Goodbye!")
