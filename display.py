@@ -6,6 +6,7 @@ from music_reports import find_albums_genre
 from music_reports import find_time_range
 from music_reports import by_album_name
 from music_reports import by_artist
+from music_reports import shortest_longest
 
 is_open = False
 is_open_file = False
@@ -60,9 +61,9 @@ def navigating(answer):
         list_range = [from_time, to_time]
         find_time_range(list_albums, list_range)
     elif answer == 4:
-        pass
+        shortest_longest(list_albums, False)
     elif answer == 5:
-        pass
+        shortest_longest(list_albums, True)
     elif answer == 6:
         artist = input("Please enter name of artist: ")
         by_artist(list_albums, artist)
