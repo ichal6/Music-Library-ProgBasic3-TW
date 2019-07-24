@@ -57,10 +57,14 @@ def display_albums(list_albums):  # display all albums
 
 def find_albums_genre(list_albums, genre):  # finds albums by genre and print them accordint to length of genre
     length = length_of_albums(list_albums, genre)
-    print(length)
+    is_not_genre_in_albums = True
     for disc in list_albums:
         if disc[3] == genre:
             print(list_to_string(disc, length))
+            is_not_genre_in_albums = False
+    if is_not_genre_in_albums:
+        print("Your genre is not in albums.")
+
 
 
 def count_albums_genre(list_albums, genre):  # count albums by genre

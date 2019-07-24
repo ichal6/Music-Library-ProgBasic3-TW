@@ -2,6 +2,7 @@ import time
 from menu import menu_map
 from music_reports import import_file
 from music_reports import display_albums
+from music_reports import find_albums_genre
 
 is_open = False
 is_open_file = False
@@ -35,10 +36,9 @@ def display_menu():
 def navigating(answer):
     if answer == 1:
         display_albums(list_albums)
-        input("Press any key to go to menu.")
-        return True
     elif answer == 2:
-        pass
+        genre = input("Please input genre: ")
+        find_albums_genre(list_albums, genre)
     elif answer == 3:
         pass
     elif answer == 4:
@@ -58,6 +58,8 @@ def navigating(answer):
         print("Please enter a correct sign to access the library")
         time.sleep(2)
         display_menu()
+    input("Press enter by go to menu.")
+    return True
 
 
 while is_open:
