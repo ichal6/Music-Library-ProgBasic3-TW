@@ -1,19 +1,20 @@
 import datetime
 
 
-def import_file(list_albums, filename="text_albums_data.txt"): #imports file 
+def import_file(list_albums, filename="text_albums_data.txt"):  # imports file
     try:
         with open(filename, "r") as fileopen:
             for line in fileopen:
                 line = line.replace('\n', '')
                 list_albums.append(line.split(","))
             fileopen.close()
+            return list_albums
     except OSError:
         print("File '" + filename + "' not found!")
-    return list_albums
+        return False
 
 
-def list_to_string(list_item, length): #prints strings instead of list
+def list_to_string(list_item, length):  # prints strings instead of list
     element_albums = 0
     str_item = ""
     format_str = ""
@@ -21,8 +22,8 @@ def list_to_string(list_item, length): #prints strings instead of list
 
         format_str += ("{:>" + str(length[element_albums]) + "} ")
         element_albums += 1
-    str_item = format_str.format(list_item[0], list_item[1], list_item[2], list_item[3],list_item[4])
-    
+    str_item = format_str.format(list_item[0], list_item[1], list_item[2], list_item[3], list_item[4])
+
     return str_item
 
 
@@ -43,30 +44,26 @@ def length_of_albums(list_albums, kind):
                 elif album[4] == kind:
                     length[col] = len(album[col])
                 elif "empty" == kind:
-                    length[col] = len(album[col])        
+                    length[col] = len(album[col])
         col += 1
     return length
 
 
-def display_albums(list_albums):# display all albums
+def display_albums(list_albums):  # display all albums
     length = length_of_albums(list_albums, "empty")
     for disc in list_albums:
-        
         print(list_to_string(disc, length))
-    
 
 
-    
-
-def find_albums_genre(list_albums, genre): #finds albums by genre and print them accordint to length of genre 
+def find_albums_genre(list_albums, genre):  # finds albums by genre and print them accordint to length of genre
     length = length_of_albums(list_albums, genre)
     print(length)
     for disc in list_albums:
         if disc[3] == genre:
-            print(list_to_string(disc,length))
+            print(list_to_string(disc, length))
 
 
-def count_albums_genre(list_albums, genre): #count albums by genre 
+def count_albums_genre(list_albums, genre):  # count albums by genre
     amount = 0
     for disc in list_albums:
         if disc[3] == genre:
@@ -74,12 +71,10 @@ def count_albums_genre(list_albums, genre): #count albums by genre
     return amount
 
 
-
-
 # find_albums_genre(list_albums, "progressive rock")
 
 
-def find_time_range(list_albums, list_range):    #format_str.format(str_it    #format_str.format(str_item = str_item + list_item[element_albums] + " ")t_item[3],list_item[4])em = str_item + list_item[element_albums] + " ")t_item[3],list_item[4])
+def find_time_range(list_albums, list_range):
     length = length_of_albums(list_albums, "empty")
     print(length)
     for disc in list_albums:
@@ -100,23 +95,23 @@ def shortest_longest(list_albums, is_long):
     for album in list_albums:
         time = album[4]
         (m, s) = time.split(':')
-        list_albums[index_album][4] = int(m) *60 + int(s)
+        list_albums[index_album][4] = int(m) * 60 + int(s)
         index_album += 1
     list_albums.sort(key=take_time)
     index_album = 0
     for album in list_albums:
-        list_albums[index_album][4] = str(datetime.timedelta(seconds = list_albums[index_album][4]))
+        list_albums[index_album][4] = str(datetime.timedelta(seconds=list_albums[index_album][4]))
         index_album += 1
     if is_long:
         print("The longest album is: " + str(list_albums[-1][1]) + " " + str(list_albums[-1][4]))
-    else: 
-        print("The shortest album is: " + str(list_albums[0][1]) + " " +str(list_albums[0][4]))
+    else:
+        print("The shortest album is: " + str(list_albums[0][1]) + " " + str(list_albums[0][4]))
 
 
 # shortest_longest(list_albums, True)
 
 
-def by_artist(list_albums, name_artist): # show album by particular artist
+def by_artist(list_albums, name_artist):  # show album by particular artist
     length = length_of_albums(list_albums, name_artist)
     print(length)
     for disc in list_albums:
@@ -124,7 +119,7 @@ def by_artist(list_albums, name_artist): # show album by particular artist
             print(list_to_string(disc, length))
 
 
-def by_album_name(list_albums, name_album): # show album by album name
+def by_album_name(list_albums, name_album):  # show album by album name
     length = length_of_albums(list_albums, name_album)
     print(length)
     for disc in list_albums:
@@ -132,7 +127,7 @@ def by_album_name(list_albums, name_album): # show album by album name
             print(list_to_string(disc, length))
 
 
-def oldest_youngest(list_albums, is_young):# show album oldest/youngest
+def oldest_youngest(list_albums, is_young):  # show album oldest/youngest
     list_albums.sort(key=take_date)
     print(list_albums)
     if is_young:
@@ -146,18 +141,18 @@ def given_genres(list_albums):
     for disc in list_albums:
         genres.add(disc[3])
     list_apperance = []
-     
+
     for disc in list_albums:
         list_apperance.append(disc[3])
-    
+
     index = 0
-    
+
     apperance = [0] * len(genres)
     index = 0
     for genre in genres:
         apperance[index] = list_apperance.count(genre)
         index += 1
-   
+
     index = 0
     genres = list((genres))
     while index < len(genres):
@@ -166,14 +161,18 @@ def given_genres(list_albums):
 
 # additional functions
 
-def suggesting(): #suggests similar albums/artists
+
+def suggesting():  # suggests similar albums/artists
     pass
+
 
 def adding_albums():
     pass
 
+
 def editing_albums():
     pass
+
 
 def save_to_file():
     pass
