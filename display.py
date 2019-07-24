@@ -1,5 +1,6 @@
 import time
 from menu import menu_map
+from menu import menu_statistics
 from music_reports import import_file
 from music_reports import display_albums
 from music_reports import find_albums_genre
@@ -7,6 +8,8 @@ from music_reports import find_time_range
 from music_reports import by_album_name
 from music_reports import by_artist
 from music_reports import shortest_longest
+from music_reports import oldest_youngest
+from music_reports import given_genres
 
 is_open = False
 is_open_file = False
@@ -71,7 +74,28 @@ def navigating(answer):
         name_album = input("Please enter name of album: ")
         by_album_name(list_albums, name_album)
     elif answer == 8:
-        pass
+        print("Here you get full statistics about your library. Press number to display: ")
+        print(menu_statistics)
+        user_choice = input("")
+        while not user_choice.isdigit():
+            print("You have entered an incorrect sign. Please try again :)")
+            time.sleep(1)
+            print(menu_statistics)
+            user_choice = input("")
+        user_choice = int(user_choice)
+        if user_choice == 1:
+            shortest_longest(list_albums, False)
+        elif user_choice == 2:
+            shortest_longest(list_albums, True)
+        elif user_choice == 3:
+            oldest_youngest(list_albums, False)
+        elif user_choice == 4:
+            oldest_youngest(list_albums, True)
+        elif user_choice == 5:
+            display_albums(list_albums)
+        elif user_choice == 6:
+            given_genres(list_albums)
+
     elif answer == 0:
         print("Goodbye!")
         return False  # exiting program

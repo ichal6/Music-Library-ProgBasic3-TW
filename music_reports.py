@@ -33,15 +33,15 @@ def length_of_albums(list_albums, kind):
     while col < 5:
         for album in list_albums:
             if len(album[col]) > length[col]:
-                if album[0] == kind:
+                if album[0].lower() == kind.lower():
                     length[col] = len(album[col])
-                elif album[1] == kind:
+                elif album[1].lower() == kind.lower():
                     length[col] = len(album[col])
-                elif album[2] == kind:
+                elif album[2].lower() == kind.lower():
                     length[col] = len(album[col])
-                elif album[3] == kind:
+                elif album[3].lower() == kind.lower():
                     length[col] = len(album[col])
-                elif album[4] == kind:
+                elif album[4].lower() == kind.lower():
                     length[col] = len(album[col])
                 elif "empty" == kind:
                     length[col] = len(album[col])
@@ -59,7 +59,7 @@ def find_albums_genre(list_albums, genre):  # finds albums by genre and print th
     length = length_of_albums(list_albums, genre)
     is_not_genre_in_albums = True
     for disc in list_albums:
-        if disc[3] == genre:
+        if disc[3].lower() == genre.lower():
             print(list_to_string(disc, length))
             is_not_genre_in_albums = False
     if is_not_genre_in_albums:
@@ -80,14 +80,6 @@ def find_time_range(list_albums, list_range):
         print("No found album by your input years")
 
 
-def count_albums_genre(list_albums, genre):  # count albums by genre
-    amount = 0
-    for disc in list_albums:
-        if disc[3] == genre:
-            amount += 1
-    return amount
-
-
 def take_time(element):
     return element[4]
 
@@ -106,6 +98,8 @@ def shortest_longest(list_albums, is_long):
     list_albums.sort(key=take_time)
     index_album = 0
     for album in list_albums:
+        # temp = datetime.timedelta(seconds=list_albums[index_album][4])
+        # print(temp.seconds)
         list_albums[index_album][4] = str(datetime.timedelta(seconds=list_albums[index_album][4]))
         index_album += 1
     if is_long:
@@ -121,7 +115,7 @@ def by_artist(list_albums, name_artist):  # show album by particular artist
     length = length_of_albums(list_albums, name_artist)
     is_not_in_album = True
     for disc in list_albums:
-        if disc[0] == name_artist:
+        if disc[0].lower() == name_artist.lower():
             print(list_to_string(disc, length))
             is_not_in_album = False
     if is_not_in_album:
@@ -132,7 +126,7 @@ def by_album_name(list_albums, name_album):  # show album by album name
     length = length_of_albums(list_albums, name_album)
     is_not_in_album = True
     for disc in list_albums:
-        if disc[1] == name_album:
+        if disc[1].lower() == name_album.lower():
             print(list_to_string(disc, length))
             is_not_in_album = False
     if is_not_in_album:
@@ -141,7 +135,6 @@ def by_album_name(list_albums, name_album):  # show album by album name
 
 def oldest_youngest(list_albums, is_young):  # show album oldest/youngest
     list_albums.sort(key=take_date)
-    print(list_albums)
     if is_young:
         print("The youngest album is: " + str(list_albums[-1][1]) + " " + str(list_albums[-1][2]))
     else:
