@@ -66,6 +66,19 @@ def find_albums_genre(list_albums, genre):  # finds albums by genre and print th
         print("Your genre is not in albums.")
 
 
+# find_albums_genre(list_albums, "progressive rock")
+
+
+def find_time_range(list_albums, list_range):
+    length = length_of_albums(list_albums, "empty")
+    is_not_in_album = True
+    for disc in list_albums:
+        if int(disc[2]) in range(list_range[0], list_range[1]):
+            print(list_to_string(disc, length))
+            is_not_in_album = False
+    if is_not_in_album:
+        print("No found album by your input years")
+
 
 def count_albums_genre(list_albums, genre):  # count albums by genre
     amount = 0
@@ -73,17 +86,6 @@ def count_albums_genre(list_albums, genre):  # count albums by genre
         if disc[3] == genre:
             amount += 1
     return amount
-
-
-# find_albums_genre(list_albums, "progressive rock")
-
-
-def find_time_range(list_albums, list_range):
-    length = length_of_albums(list_albums, "empty")
-    print(length)
-    for disc in list_albums:
-        if int(disc[2]) in range(list_range[0], list_range[1]):
-            print(list_to_string(disc, length))
 
 
 def take_time(element):
@@ -125,10 +127,13 @@ def by_artist(list_albums, name_artist):  # show album by particular artist
 
 def by_album_name(list_albums, name_album):  # show album by album name
     length = length_of_albums(list_albums, name_album)
-    print(length)
+    is_not_in_album = True
     for disc in list_albums:
         if disc[1] == name_album:
             print(list_to_string(disc, length))
+            is_not_in_album = False
+    if is_not_in_album:
+        print("No found album")
 
 
 def oldest_youngest(list_albums, is_young):  # show album oldest/youngest
