@@ -55,7 +55,7 @@ def navigating(answer):
     elif answer == 2:
         genre = input("Please input genre: ")
         find_albums_genre(list_albums, genre)
-    elif answer == 3:
+    elif answer == 3:  # Przeniesc do funkcji find time range
         from_time = input("Please input start year: ")
         while not from_time.isdigit():
             print("You have entered an incorrect sign. Please try again :)")
@@ -109,26 +109,15 @@ def navigating(answer):
     elif answer == 10:  # add new album
         add_new_album(list_albums)
         import_file(list_albums)
-    elif answer == 11:
+    elif answer == 11:  # edit album
         editing_albums(list_albums)
-        print(list_albums)
         albums = ""
         for disc in list_albums:
             albums += "{},{},{},{},{}\n".format(disc[0], disc[1], disc[2], disc[3], disc[4])
         save_to_file(albums) 
-    elif answer == 12: #dodaj do menu
-        display_albums(list_albums)
-        user_listen = input("If you'd like to listen to an album input its number: ")
-        while not user_listen.isdigit() or int(user_listen) > len(list_albums) or int(user_listen) == 0:
-            print("The number you have entered is not attached to any album.")
-            user_listen = input("If you'd like to listen to an album input its number: ")
-        user_listen = int(user_listen)
-        user_listen -= 1
-        user_listen = list_albums[int(user_listen)][0] + " " + list_albums[int(user_listen)][1]
-        open_in_browser(user_listen)
-        
-        
-    elif answer == 0:
+    elif answer == 12:  # dodaj do menu
+        open_in_browser(list_albums)
+    elif answer == 0:  # exit
         print("Goodbye!")
         return False  # exiting program
     else:

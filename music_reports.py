@@ -8,11 +8,10 @@ def import_file(list_albums, filename="text_albums_data.txt"):  # imports file
     try:
         with open(filename, "r") as fileopen:
             for line in fileopen:
-                line = line.replace('\n', '')
-                list_albums.append(line.split(","))
-            fileopen.close()
+                line = line.replace('\n', '')  # replace new line with an empty char
+                list_albums.append(line.split(","))  # adds comma between values
             return list_albums
-    except OSError:
+    except OSError:  # informs user if  can't find the file
         print("File '" + filename + "' not found!")
         return False
 
@@ -23,14 +22,14 @@ def list_to_string(list_item, length, index):  # prints strings instead of list
     format_str = "{:>3}. "
     while element_albums < 5:
 
-        format_str += ("{:>" + str(length[element_albums]) + "} ")
+        format_str += ("{:>" + str(length[element_albums]) + "} ")  # prints elements eavenly
         element_albums += 1
     str_item = format_str.format(index, list_item[0], list_item[1], list_item[2], list_item[3], list_item[4])
 
-    return str_item
+    return str_item  # returns strings
 
 
-def length_of_albums(list_albums, kind):
+def length_of_albums(list_albums, kind):  # chcecks the length of columns
     length = [0, 0, 0, 0, 0]
     col = 0
     while col < 5:
@@ -49,7 +48,7 @@ def length_of_albums(list_albums, kind):
                 elif "empty" == kind:
                     length[col] = len(album[col])
         col += 1
-    return length
+    return length  # returns value for print table
 
 
 def display_albums(list_albums):  # display all albums
@@ -68,12 +67,12 @@ def find_albums_genre(list_albums, genre):  # finds albums by genre and print th
         if disc[3].lower() == genre.lower():
             print(list_to_string(disc, length, index))
             is_not_genre_in_albums = False
-            index += 1
+            index += 1  # used to display elements evenly, checks length of elements chosen
     if is_not_genre_in_albums:
         print("Your genre is not in albums.")
 
 
-def find_time_range(list_albums, list_range):
+def find_time_range(list_albums, list_range):  # find albums released betweeen particular dates
     length = length_of_albums(list_albums, "empty")
     is_not_in_album = True
     index = 1
@@ -81,29 +80,29 @@ def find_time_range(list_albums, list_range):
         if int(disc[2]) in range(list_range[0], list_range[1]):
             print(list_to_string(disc, length, index))
             is_not_in_album = False
-            index += 1
+            index += 1  # used to display elements evenly, checks length of elements chosen
     if is_not_in_album:
         print("No found album by your input years")
 
 
-def take_time(element):
+def take_time(element):  # used to sort elements by time
     return element[4]
 
 
-def take_date(element):
+def take_date(element):  # used to sort elements by date
     return int(element[2])
 
 
-def shortest_longest(list_albums, is_long):
+def shortest_longest(list_albums, is_long):  # displays the shortest or the longest album
     index_album = 0
-    for album in list_albums:
+    for album in list_albums:  # changes minutes to seconds
         time = album[4]
         (m, s) = time.split(':')
         list_albums[index_album][4] = int(m) * 60 + int(s)
         index_album += 1
-    list_albums.sort(key=take_time)
+    list_albums.sort(key=take_time)  # sorts by time
     index_album = 0
-    for album in list_albums:
+    for album in list_albums:  #turns seconds to hours
         list_albums[index_album][4] = str(datetime.timedelta(seconds=list_albums[index_album][4]))
         index_album += 1
     if is_long:
@@ -111,10 +110,7 @@ def shortest_longest(list_albums, is_long):
     else:
         print("The shortest album is: " + str(list_albums[0][1]) + " " + str(list_albums[0][4]))
     list_albums.clear()
-    import_file(list_albums)
-
-
-# shortest_longest(list_albums, True)
+    import_file(list_albums)  # imports the original list
 
 
 def by_artist(list_albums, name_artist):  # show album by particular artist
@@ -176,7 +172,7 @@ def given_genres(list_albums):
 
 
 def suggesting(list_albums):
-    name_artist = input("Find me artist similar to: ")
+    name_artist = input("Find me artist similar to (e.g. Britney Spears): ")
     is_not_in_album = True
     index = 0
     artist_index = 0
@@ -197,7 +193,7 @@ def editing_albums(list_albums):
     display_albums(list_albums)
     length = len(list_albums)
     row = input("Please choose the album: ")
-    while not row.isdigit() or int(row) > length:
+    while not row.isdigit() or int(row) > length or int(row) == 0:
         print("Please input a number of album")
         row = input("Please choose the album: ")
     row = int(row)
@@ -252,7 +248,7 @@ def add_new_album(list_albums, filename="text_albums_data.txt"):
     artist_new_album = input("Please write artist of new album: ")
     name_new_album = input("Please write name of new album: ")
     year_new_album = input("Please input the year of publishment: ")
-    while not year_new_album.isdigit():
+    while not year_new_album.isdigit() or int(year_new_album) == 0:
         year_new_album = input("Please input the year of publishment: ")  
     genre_new_album = input("Please input genre of new album: ")
 
@@ -274,7 +270,15 @@ def add_new_album(list_albums, filename="text_albums_data.txt"):
         return False
 
 
-def open_in_browser(user_input):
-    user_input = user_input.replace(" ","+")
-    link = "https://www.youtube.com/results?search_query=" + user_input
+def open_in_browser(list_albums):
+    display_albums(list_albums)
+    user_listen = input("If you'd like to listen to an album input its number: ")
+    while not user_listen.isdigit() or int(user_listen) > len(list_albums) or int(user_listen) == 0:
+        print("The number you have entered is not attached to any album.")
+        user_listen = input("If you'd like to listen to an album input its number: ")
+    user_listen = int(user_listen)
+    user_listen -= 1
+    user_listen = list_albums[int(user_listen)][0] + " " + list_albums[int(user_listen)][1]
+    user_listen = user_listen.replace(" ", "+")
+    link = "https://www.youtube.com/results?search_query=" + user_listen
     webbrowser.open(link)

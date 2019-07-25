@@ -8,10 +8,12 @@ Please press 7 to search through albums by name.
 Please press 8 to get a full report.
 Please press 9 to search similar albums.
 Please press 10 to add new album.
-Please press 11 to edit new album.
+Please press 11 to edit album.
+Please press 12 to open album in Youtube
 Please press 0 to exit. '''
 
-menu_statistics = '''Please press 1 to display the longest album.
+menu_statistics = '''
+Please press 1 to display the longest album.
 Please press 2 to display the shortest album.
 Please press 3 to display the oldest album.
 Please press 4 to display the youngest album.
