@@ -1,6 +1,7 @@
 from menu import menu_editting
 import datetime
 import os
+import webbrowser
 
 
 def import_file(list_albums, filename="text_albums_data.txt"):  # imports file
@@ -70,9 +71,6 @@ def find_albums_genre(list_albums, genre):  # finds albums by genre and print th
             index += 1
     if is_not_genre_in_albums:
         print("Your genre is not in albums.")
-
-
-# find_albums_genre(list_albums, "progressive rock")
 
 
 def find_time_range(list_albums, list_range):
@@ -176,8 +174,6 @@ def given_genres(list_albums):
         print(genres[index] + " - " + str(apperance[index]))
         index += 1
 
-# additional functions
-
 
 def suggesting(list_albums):
     name_artist = input("Find me artist similar to: ")
@@ -277,3 +273,8 @@ def add_new_album(list_albums, filename="text_albums_data.txt"):
         print("File '" + filename + "' not found!")
         return False
 
+
+def open_in_browser(user_input):
+    user_input = user_input.replace(" ","+")
+    link = "https://www.youtube.com/results?search_query=" + user_input
+    webbrowser.open(link)

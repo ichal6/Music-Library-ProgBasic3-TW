@@ -16,6 +16,7 @@ from music_reports import given_genres
 from music_reports import editing_albums
 from music_reports import save_to_file
 from music_reports import suggesting
+from music_reports import open_in_browser
 
 
 is_open = False
@@ -115,7 +116,18 @@ def navigating(answer):
         for disc in list_albums:
             albums += "{},{},{},{},{}\n".format(disc[0], disc[1], disc[2], disc[3], disc[4])
         save_to_file(albums) 
-
+    elif answer == 12: #dodaj do menu
+        display_albums(list_albums)
+        user_listen = input("If you'd like to listen to an album input its number: ")
+        while not user_listen.isdigit() or int(user_listen) > len(list_albums) or int(user_listen) == 0:
+            print("The number you have entered is not attached to any album.")
+            user_listen = input("If you'd like to listen to an album input its number: ")
+        user_listen = int(user_listen)
+        user_listen -= 1
+        user_listen = list_albums[int(user_listen)][0] + " " + list_albums[int(user_listen)][1]
+        open_in_browser(user_listen)
+        
+        
     elif answer == 0:
         print("Goodbye!")
         return False  # exiting program
