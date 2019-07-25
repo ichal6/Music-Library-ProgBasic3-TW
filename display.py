@@ -104,14 +104,9 @@ def navigating(answer):
     elif answer == 9:  # view all similar music genres albums
         suggesting(list_albums)
     elif answer == 10:  # add new album
-        artist_new_album = input("Please write artist of new album: ")
-        name_new_album = input("Please write name of new album: ")
-        year_new_album = input("Please input the year of publishment: ")
-        genre_new_album = input("Please input genre of new album: ")
-        length_new_album = input("Please insert length of new album: ")
-        new_album = "\n{},{},{},{},{}".format(artist_new_album, name_new_album, year_new_album, genre_new_album, length_new_album)
-        add_new_album(new_album)
-    elif answer == 11: 
+        add_new_album(list_albums)
+        import_file(list_albums)
+    elif answer == 11:
         editing_albums(list_albums)
         print(list_albums)
         albums = ""

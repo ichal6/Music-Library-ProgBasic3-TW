@@ -252,12 +252,28 @@ def save_to_file(string_album, filename="text_albums_data.txt"):
         return False
 
 
-def add_new_album(new_album, filename="text_albums_data.txt"):
+def add_new_album(list_albums, filename="text_albums_data.txt"):
+    artist_new_album = input("Please write artist of new album: ")
+    name_new_album = input("Please write name of new album: ")
+    year_new_album = input("Please input the year of publishment: ")
+    while not year_new_album.isdigit():
+        year_new_album = input("Please input the year of publishment: ")  
+    genre_new_album = input("Please input genre of new album: ")
+
+    minutes_duration = input("Please insert minutes duration of album: ")
+    while not minutes_duration.isdigit() or int(minutes_duration) > 1000000:
+        minutes_duration = input("Please insert minutes duration of album: ")
+    seconds_duration = input("Please insert seconds duration of album: ")
+    while not seconds_duration.isdigit() or int(seconds_duration) > 59:
+        seconds_duration = input("Please insert seconds duration of album: ")
+    duration = minutes_duration + ":" + seconds_duration
+
+    new_album = "\n{},{},{},{},{}".format(artist_new_album, name_new_album, year_new_album, genre_new_album, duration)
     try:
         with open(filename, "a") as filewrite:
             filewrite.write(new_album)
-            filewrite.close()
             return True
     except OSError:
         print("File '" + filename + "' not found!")
         return False
+
