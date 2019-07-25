@@ -71,7 +71,20 @@ def find_albums_genre(list_albums, genre):  # finds albums by genre and print th
         print("Your genre is not in albums.")
 
 
-def find_time_range(list_albums, list_range):  # find albums released betweeen particular dates
+def find_time_range(list_albums):  # find albums released betweeen particular dates
+    from_time = input("Please input start year: ")
+    while not from_time.isdigit():
+        print("You have entered an incorrect sign. Please try again :)")
+        from_time = input("Please input start year: ")
+    from_time = int(from_time)
+
+    to_time = input("Please input end year: ")
+    while not to_time.isdigit():
+        print("You have entered an incorrect sign. Please try again :)")
+        to_time = input("Please input end year: ")
+    to_time = int(to_time)
+
+    list_range = [from_time, to_time]
     length = length_of_albums(list_albums, "empty")
     is_not_in_album = True
     index = 1
@@ -176,7 +189,7 @@ def suggesting(list_albums):
     index = 0
     artist_index = 0
     for disc in list_albums:
-        if disc[0].lower() == name_artist.lower():
+        if disc[0].lower().find(name_artist.lower()) > -1:
             artist_index = index
             is_not_in_album = False
             genre = list_albums[artist_index][3]

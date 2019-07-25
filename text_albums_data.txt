@@ -12,10 +12,6 @@ Massive Attack,Blue Lines,1991,hip hop,45:02
 Pink Floyd,The Dark Side,1973,progressive rock,43:00
 Pink Floyd,Of The Moon,1973,progressive rock,43:00
 Pink,The Dark Side Of The Moon,1973,progressive rock,43:00
-dasfdhjafjdsa,dgajsgdjas,66787898,gjsgjasd,5543:8765
-dgfdjsdgfs,hgfcdghsgf,6546,jhgfdfghj,6545:765
-ghjgkjhgf,jghfdgh,7654,kjhgfd,233:60
-sdfgh,jhgfdsa,456,sdfgh,345:59
 Pink Floyd,The Dark Side Of The Moon,1973,progressive rock,43:00
 Britney Spears,Baby One More Time,1999,pop,42:20
 The Beatles,Revolver,1966,rock,34:43
@@ -30,9 +26,3 @@ Massive Attack,Blue Lines,1991,hip hop,45:02
 Pink Floyd,The Dark Side,1973,progressive rock,43:00
 Pink Floyd,Of The Moon,1973,progressive rock,43:00
 Pink,The Dark Side Of The Moon,1973,progressive rock,43:00
-dasfdhjafjdsa,dgajsgdjas,66787898,gjsgjasd,5543:8765
-dgfdjsdgfs,hgfcdghsgf,6546,jhgfdfghj,6545:765
-ghjgkjhgf,jghfdgh,7654,kjhgfd,233:60
-sdfgh,jhgfdsa,456,sdfgh,345:59
-uuu,12,0,abc,12:8
-ala,adam,2000,hffhf,3212:0

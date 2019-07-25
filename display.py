@@ -56,22 +56,7 @@ def navigating(answer):
         genre = input("Please input genre: ")
         find_albums_genre(list_albums, genre)
     elif answer == 3:
-        from_time = input("Please input start year: ")
-        while not from_time.isdigit():
-            print("You have entered an incorrect sign. Please try again :)")
-            time.sleep(3)
-            from_time = input("Please input start year: ")
-        from_time = int(from_time)
-
-        to_time = input("Please input end year: ")
-        while not to_time.isdigit():
-            print("You have entered an incorrect sign. Please try again :)")
-            time.sleep(3)
-            to_time = input("Please input end year: ")
-        to_time = int(to_time)
-
-        list_range = [from_time, to_time]
-        find_time_range(list_albums, list_range)
+        find_time_range(list_albums)
     elif answer == 4:
         shortest_longest(list_albums, False)
     elif answer == 5:
@@ -114,7 +99,7 @@ def navigating(answer):
         albums = ""
         for disc in list_albums:
             albums += "{},{},{},{},{}\n".format(disc[0], disc[1], disc[2], disc[3], disc[4])
-        save_to_file(albums) 
+        save_to_file(albums)
     elif answer == 12:  # dodaj do menu
         open_in_browser(list_albums)
     elif answer == 0:  # exit
