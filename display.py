@@ -2,6 +2,7 @@ import time
 import os
 from menu import menu_map
 from menu import menu_statistics
+from menu import menu_visual
 from music_reports import import_file
 from music_reports import add_new_album
 from music_reports import display_albums
@@ -24,15 +25,17 @@ list_albums = []
 is_open_file = import_file(list_albums)
 
 if is_open_file:
+    print(menu_visual)
     is_open = True
     print("Welcome to the music library.")
     time.sleep(1)
-    print("In our programm you will be able to access and search your music library.")
+    print("In our programm you will be able to access and search your music library.\n")
     time.sleep(1)
-    print(list_albums)
 
 
 def display_menu():
+    os.system("clear")
+    print(menu_visual)
     print(menu_map)
     answer = input("")
     while not answer.isdigit():
@@ -40,13 +43,12 @@ def display_menu():
         time.sleep(3)
         print(menu_map)
         answer = input("")
-
+    os.system("clear")
     return int(answer)
-
-# display_menu()
 
 
 def navigating(answer):
+    print(menu_visual)
     if answer == 1:
         display_albums(list_albums)
     elif answer == 2:
