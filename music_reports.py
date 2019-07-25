@@ -118,7 +118,7 @@ def by_artist(list_albums, name_artist):  # show album by particular artist
     is_not_in_album = True
     index = 1
     for disc in list_albums:
-        if disc[0].lower() == name_artist.lower():
+        if disc[0].lower().find(name_artist.lower()) > -1:
             print(list_to_string(disc, length, index))
             is_not_in_album = False
             index += 1
@@ -131,7 +131,7 @@ def by_album_name(list_albums, name_album):  # show album by album name
     is_not_in_album = True
     index = 1
     for disc in list_albums:
-        if disc[1].lower() == name_album.lower():
+        if disc[1].lower().find(name_album.lower()) > -1:
             print(list_to_string(disc, length, index))
             is_not_in_album = False
             index += 1
