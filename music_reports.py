@@ -1,4 +1,3 @@
-from menu import menu_editting
 import datetime
 import os
 import webbrowser
@@ -102,7 +101,7 @@ def shortest_longest(list_albums, is_long):  # displays the shortest or the long
         index_album += 1
     list_albums.sort(key=take_time)  # sorts by time
     index_album = 0
-    for album in list_albums:  #turns seconds to hours
+    for album in list_albums:  # turns seconds to hours
         list_albums[index_album][4] = str(datetime.timedelta(seconds=list_albums[index_album][4]))
         index_album += 1
     if is_long:
@@ -201,32 +200,55 @@ def editing_albums(list_albums):
 
     is_editinng = True
     while is_editinng:
-        print(menu_editting)
-        user_input = int(input(""))
-        if user_input == 1:
+        # print(menu_editting)
+        # user_input = int(input(""))
+        user_choice = input("Would you like to edit this name %s [Y]es/[N]o: " % list_albums[row][0])
+
+        while user_choice.lower() != "y" and user_choice.lower() != "n":
+            user_choice = input("Would you like to edit this name %s [Y]es/[N]o: " % list_albums[row][0])
+        if user_choice.lower() == "y":
             name_artist = input("Please insert name of artist: ")
             list_albums[row][0] = name_artist
-        elif user_input == 2:
+
+        user_choice = input("Would you like to edit this title %s [Y]es/[N]o: " % list_albums[row][1])
+
+        while user_choice.lower() != "y" and user_choice.lower() != "n":
+            user_choice = input("Would you like to edit this title %s [Y]es/[N]o: " % list_albums[row][1])
+        if user_choice.lower() == "y":
             name_album = input("Please insert name of album: ")
             list_albums[row][1] = name_album
-        elif user_input == 3:
-            name_year = input("Please insert year of album: ")
-            list_albums[row][2] = name_year
-        elif user_input == 4:
-            genre = input("Please insert genre of album: ")
-            list_albums[row][3] = genre
-        elif user_input == 5:
-            minutes_duration = input("Please insert minutes duration of album: ")
-            while not minutes_duration.isdigit():
-                minutes_duration = input("Please insert minutes duration of album: ")
-            seconds_duration = input("Please insert seconds duration of album: ")
-            while not seconds_duration.isdigit():
-                seconds_duration = input("Please insert seconds duration of album: ")
 
-            duration = minutes_duration + ":" + seconds_duration
-            list_albums[row][4] = duration
-        elif user_input == 0:
-            is_editinng = False
+        user_choice = input("Would you like to edit this year %s [Y]es/[N]o: " % list_albums[row][2])
+       
+        while user_choice.lower() != "y" and user_choice.lower() != "n":
+            user_choice = input("Would you like to edit this year %s [Y]es/[N]o: " % list_albums[row][2])
+        if user_choice.lower() == "y":
+            year_album = input("Please insert year of album: ")
+            while not year_album.isdigit() or int(year_album) == 0:
+                year_album = input("Please insert year of album: ")
+            list_albums[row][2] = year_album
+
+        user_choice = input("Would you like to edit this genre %s [Y]es/[N]o: " % list_albums[row][3])
+        while user_choice.lower() != "y" and user_choice.lower() != "n":
+            user_choice = input("Would you like to edit this genre %s [Y]es/[N]o: " % list_albums[row][3])
+        if user_choice.lower() == "y":
+            genre_album = input("Please insert genre of album: ")
+            list_albums[row][3] = genre_album
+
+        user_choice = input("Would you like to edit this time %s [Y]es/[N]o: " % list_albums[row][4])
+
+        while user_choice.lower() != "y" and user_choice.lower() != "n":
+            user_choice = input("Would you like to edit this time %s [Y]es/[N]o: " % list_albums[row][4])
+        if user_choice.lower() == "y":
+            minutes_album = input("Please insert minutes of album: ")
+            while not minutes_album.isdigit() or int(minutes_album) > 1000000:
+                minutes_album = input("Please insert minutes of album: ")
+            seconds_album = input("Please insert seconds of album: ")
+            while not seconds_album.isdigit() or int(seconds_album) >= 60:
+                seconds_album = input("Please insert seconds of album: ")
+            time_album = "{}:{}".format(minutes_album, seconds_album)
+            list_albums[row][4] = time_album
+        is_editinng = False
 
 
 def save_to_file(string_album, filename="text_albums_data.txt"):

@@ -55,7 +55,7 @@ def navigating(answer):
     elif answer == 2:
         genre = input("Please input genre: ")
         find_albums_genre(list_albums, genre)
-    elif answer == 3:  # Przeniesc do funkcji find time range
+    elif answer == 3:
         from_time = input("Please input start year: ")
         while not from_time.isdigit():
             print("You have entered an incorrect sign. Please try again :)")
