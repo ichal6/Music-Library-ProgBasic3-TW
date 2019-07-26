@@ -1,7 +1,6 @@
 import time
 import os
 from menu import menu_map
-from menu import menu_statistics
 from menu import menu_visual
 from music_reports import import_file
 from music_reports import add_new_album
@@ -11,12 +10,11 @@ from music_reports import find_time_range
 from music_reports import by_album_name
 from music_reports import by_artist
 from music_reports import shortest_longest
-from music_reports import oldest_youngest
-from music_reports import given_genres
 from music_reports import editing_albums
 from music_reports import save_to_file
 from music_reports import suggesting
 from music_reports import open_in_browser
+from music_reports import full_report
 
 
 def display_menu():
@@ -35,45 +33,22 @@ def display_menu():
 
 def navigating(answer):
     print(menu_visual)
-    if answer == 1:
+    if answer == 1:  # display all albums
         display_albums(list_albums)
-    elif answer == 2:
-        genre = input("Please input genre: ")
-        find_albums_genre(list_albums, genre)
-    elif answer == 3:
+    elif answer == 2:  # find by genre
+        find_albums_genre(list_albums)
+    elif answer == 3:  # find by time range
         find_time_range(list_albums)
-    elif answer == 4:
+    elif answer == 4:  # find the shortest title
         shortest_longest(list_albums, False)
-    elif answer == 5:
+    elif answer == 5:  # find the longest title
         shortest_longest(list_albums, True)
-    elif answer == 6:
-        artist = input("Please enter name of artist: ")
-        by_artist(list_albums, artist)
-    elif answer == 7:
-        name_album = input("Please enter name of album: ")
-        by_album_name(list_albums, name_album)
-    elif answer == 8:
-        print("Here you get full statistics about your library. Press number to display: ")
-        print(menu_statistics)
-        user_choice = input("")
-        while not user_choice.isdigit():
-            print("You have entered an incorrect sign. Please try again :)")
-            time.sleep(1)
-            print(menu_statistics)
-            user_choice = input("")
-        user_choice = int(user_choice)
-        if user_choice == 1:
-            shortest_longest(list_albums, False)
-        elif user_choice == 2:
-            shortest_longest(list_albums, True)
-        elif user_choice == 3:
-            oldest_youngest(list_albums, False)
-        elif user_choice == 4:
-            oldest_youngest(list_albums, True)
-        elif user_choice == 5:
-            display_albums(list_albums)
-        elif user_choice == 6:
-            given_genres(list_albums)
+    elif answer == 6:  # find by name of artist
+        by_artist(list_albums)
+    elif answer == 7:  # find by album name
+        by_album_name(list_albums)
+    elif answer == 8:  # full report
+        full_report(list_albums)
     elif answer == 9:  # view all similar music genres albums
         suggesting(list_albums)
     elif answer == 10:  # add new album

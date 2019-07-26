@@ -1,6 +1,8 @@
 import datetime
 import os
 import webbrowser
+import time
+from menu import menu_statistics
 
 
 def import_file(list_albums, filename="text_albums_data.txt"):  # imports file
@@ -58,7 +60,8 @@ def display_albums(list_albums):  # display all albums
         index += 1
 
 
-def find_albums_genre(list_albums, genre):  # finds albums by genre and print them accordint to length of genre
+def find_albums_genre(list_albums):  # finds albums by genre and print them accordint to length of genre
+    genre = input("Please input genre: ")
     length = length_of_albums(list_albums, genre)
     is_not_genre_in_albums = True
     index = 1
@@ -125,7 +128,8 @@ def shortest_longest(list_albums, is_long):  # displays the shortest or the long
     import_file(list_albums)  # imports the original list
 
 
-def by_artist(list_albums, name_artist):  # show album by particular artist
+def by_artist(list_albums):  # show album by particular artist
+    name_artist = input("Please enter name of artist: ")
     length = length_of_albums(list_albums, name_artist)
     is_not_in_album = True
     index = 1
@@ -138,7 +142,8 @@ def by_artist(list_albums, name_artist):  # show album by particular artist
         print("No found album")
 
 
-def by_album_name(list_albums, name_album):  # show album by album name
+def by_album_name(list_albums):  # show album by album name
+    name_album = input("Please enter name of album: ")
     length = length_of_albums(list_albums, name_album)
     is_not_in_album = True
     index = 1
@@ -317,3 +322,27 @@ def open_in_browser(list_albums):
     user_listen = user_listen.replace(" ", "+")
     link = "https://www.youtube.com/results?search_query=" + user_listen
     webbrowser.open(link)
+
+
+def full_report(list_albums):
+    print("Here you get full statistics about your library. Press number to display: ")
+    print(menu_statistics)
+    user_choice = input("")
+    while not user_choice.isdigit():
+        print("You have entered an incorrect sign. Please try again :)")
+        time.sleep(1)
+        print(menu_statistics)
+        user_choice = input("")
+    user_choice = int(user_choice)
+    if user_choice == 1:
+        shortest_longest(list_albums, False)
+    elif user_choice == 2:
+        shortest_longest(list_albums, True)
+    elif user_choice == 3:
+        oldest_youngest(list_albums, False)
+    elif user_choice == 4:
+        oldest_youngest(list_albums, True)
+    elif user_choice == 5:
+        display_albums(list_albums)
+    elif user_choice == 6:
+        given_genres(list_albums)
