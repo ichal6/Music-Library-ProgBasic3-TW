@@ -57,7 +57,7 @@ def navigating(answer):
     elif answer == 11:  # edit album
         albums = editing_albums(list_albums)
         save_to_file(albums)
-    elif answer == 12:  # dodaj do menu
+    elif answer == 12:  # open album in youtube
         open_in_browser(list_albums)
     elif answer == 0:  # exit
         print("Goodbye!")
