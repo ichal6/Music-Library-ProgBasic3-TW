@@ -267,6 +267,10 @@ def editing_albums(list_albums):
             time_album = "{}:{}".format(minutes_album, seconds_album)
             list_albums[row][4] = time_album
         is_editinng = False
+    albums = ""
+    for disc in list_albums:
+        albums += "{},{},{},{},{}\n".format(disc[0], disc[1], disc[2], disc[3], disc[4])
+    return albums
 
 
 def save_to_file(string_album, filename="text_albums_data.txt"):

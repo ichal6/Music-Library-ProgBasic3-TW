@@ -55,10 +55,7 @@ def navigating(answer):
         add_new_album(list_albums)
         import_file(list_albums)
     elif answer == 11:  # edit album
-        editing_albums(list_albums)
-        albums = ""
-        for disc in list_albums:
-            albums += "{},{},{},{},{}\n".format(disc[0], disc[1], disc[2], disc[3], disc[4])
+        albums = editing_albums(list_albums)
         save_to_file(albums)
     elif answer == 12:  # dodaj do menu
         open_in_browser(list_albums)

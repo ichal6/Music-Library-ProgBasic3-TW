@@ -54,5 +54,5 @@ Massive Attack,Blue Lines,1991,hip hop,45:02
 Pink Floyd,The Dark Side,1973,progressive rock,43:00
 Pink Floyd,Of The Moon,1973,progressive rock,43:00
 Pink,The Dark Side Of The Moon,1973,progressive rock,43:00
-a,b,130,q,99:22
+a,b,130,q,34:56
 ,,11111111,18,2:2
