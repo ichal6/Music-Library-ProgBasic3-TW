@@ -8,7 +8,7 @@ def import_file(list_albums, filename="text_albums_data.txt"):  # imports file
         with open(filename, "r") as fileopen:
             for line in fileopen:
                 line = line.replace('\n', '')  # replace new line with an empty char
-                list_albums.append(line.split(","))  # adds comma between values
+                list_albums.append(line.split(","))  # divides the line of text according to commas
             return list_albums
     except OSError:  # informs user if  can't find the file
         print("File '" + filename + "' not found!")
@@ -232,7 +232,7 @@ def editing_albums(list_albums):
             list_albums[row][1] = name_album
 
         user_choice = input("Would you like to edit this year %s [Y]es/[N]o: " % list_albums[row][2])
-       
+
         while user_choice.lower() != "y" and user_choice.lower() != "n":
             user_choice = input("Would you like to edit this year %s [Y]es/[N]o: " % list_albums[row][2])
         if user_choice.lower() == "y":
@@ -284,7 +284,7 @@ def add_new_album(list_albums, filename="text_albums_data.txt"):
     name_new_album = input("Please write name of new album: ")
     year_new_album = input("Please input the year of publishment: ")
     while not year_new_album.isdigit() or int(year_new_album) == 0:
-        year_new_album = input("Please input the year of publishment: ")  
+        year_new_album = input("Please input the year of publishment: ")
     genre_new_album = input("Please input genre of new album: ")
 
     minutes_duration = input("Please insert minutes duration of album: ")

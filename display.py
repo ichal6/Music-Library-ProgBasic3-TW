@@ -19,21 +19,6 @@ from music_reports import suggesting
 from music_reports import open_in_browser
 
 
-is_open = False
-is_open_file = False
-list_albums = []
-
-is_open_file = import_file(list_albums)
-
-if is_open_file:
-    print(menu_visual)
-    is_open = True
-    print("Welcome to the music library.")
-    time.sleep(1)
-    print("In our programm you will be able to access and search your music library.\n")
-    time.sleep(1)
-
-
 def display_menu():
     os.system("clear")
     print(menu_visual)
@@ -113,6 +98,21 @@ def navigating(answer):
     os.system("clear")
     return True
 
+
+is_open = False
+is_open_file = False  # checks if the file opened successfully
+list_albums = []
+
+is_open_file = import_file(list_albums)
+
+
+if is_open_file:
+    print(menu_visual)
+    is_open = True
+    print("Welcome to the music library.")
+    time.sleep(1)
+    print("In our programm you will be able to access and search your music library.\n")
+    time.sleep(1)
 
 while is_open:
     is_open = navigating(display_menu())
